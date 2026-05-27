@@ -1,17 +1,19 @@
 class Program
 {
-    static float ppc64leHelloWorld()
+    static double ppc64leHelloWorldCallee(double a, double b)
     {
-        float fa = 1238.98645f;
-        float fb = 1098.56441f;
-        float c = fa + fb;
-        return c;
+            return a + b;
+    }
+
+    static double ppc64leHelloWorld()
+    {
+          double sum = ppc64leHelloWorldCallee(10.250025, 20.500050);
+          return sum;
     }
 
     static void Main(string[] args)
     {
-        float c = ppc64leHelloWorld();
-        Console.WriteLine("Answer C = {0}", c);
+        double retVal = ppc64leHelloWorld();
+        Console.WriteLine("Hello World -> After returning from JITted functions! Return Value = {0}", retVal);
     }
 }
-
