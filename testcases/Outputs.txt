@@ -34,6 +34,12 @@ Program33.cs:1
 Program34.cs:1
 Program35.cs:30
 Program36.cs:30.750075000000002
-
-
+Program37.cs:45
+Program38.cs:45
+Program39.cs:45
+Program40.cs:25
+Program41.cs:2
+Program42.cs:28
+Program43.cs:6
+Program44.cs:18
 
