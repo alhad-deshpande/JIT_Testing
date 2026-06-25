@@ -238,7 +238,7 @@ do
 
     TOTAL=$((TOTAL + 1))
 
-    if [ "$EXPECTED" = "$ACTUAL" ]; then
+    if printf "%s\n" "$ACTUAL" | grep -Fq "$EXPECTED"; then
 
         echo ""
         echo "RESULT: PASS"

@@ -15,6 +15,10 @@ class Program
 {
     static float ppc64leHelloWorldCallee(MixedStruct s, int b)
     {
+        // PPC64LE ELFv2 ABI: MixedStruct is NOT HFA (has mixed float and int fields)
+        // Non-HFA structs are passed in integer registers
+        // s: r3-r4 (12 bytes struct, needs 2 GPR slots)
+        // b: r5
         return s.field1 + s.field2 + s.field3 + b;
     }
 

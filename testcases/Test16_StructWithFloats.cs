@@ -14,6 +14,10 @@ class Program
 {
     static float ppc64leHelloWorldCallee(FloatStruct s, int b)
     {
+        // PPC64LE ELFv2 ABI: FloatStruct is HFA (Homogeneous Float Aggregate)
+        // s: f1-f2 (HFA with 2 floats, each float uses one FPR slot)
+        //    r3-r4 shadowed/consumed by f1-f2
+        // b: r5 (r3-r4 were shadowed by the HFA)
         return s.field1 + s.field2 + b;
     }
 

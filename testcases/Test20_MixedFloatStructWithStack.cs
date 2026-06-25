@@ -17,19 +17,22 @@ class Program
                                           float d, FloatStruct s2, double e, int f,
                                           float g, double h, FloatStruct s3, int i)
     {
-        // a: f1, r3 consumed
-        // s1: r4 (8 bytes struct)
-        // b: f2, r5 consumed
-        // c: r6
-        // d: f3, r7 consumed
-        // s2: r8 (8 bytes struct)
-        // e: f4, r9 consumed
-        // f: r10
-        // g: f5, r11 consumed (last GPR)
-        // h: f6, r12 consumed (GPRs exhausted, but r12 available)
-        // s3: needs r13 but exhausted -> goes to stack at SP+96
-        // i: goes to stack at SP+104
-        return a + s1.field1 + s1.field2 + b + c + d + s2.field1 + s2.field2 + 
+        // PPC64LE ELFv2 ABI: FloatStruct is HFA (Homogeneous Float Aggregate)
+        // HFA structs are passed in float registers
+        // For first 8 FPRs, corresponding GPRs are shadowed/consumed
+        // a: f1, r3 shadowed
+        // s1: f2-f3 (HFA with 2 floats), r4-r5 shadowed
+        // b: f4, r6 shadowed
+        // c: r7 (first non-shadowed GPR)
+        // d: f5, r8 shadowed
+        // s2: f6-f7 (HFA with 2 floats), r9-r10 shadowed (r10 is last GPR)
+        // e: f8 (8th FPR, no more GPR shadowing after this)
+        // f: stack at SP+96 (GPRs exhausted at r10)
+        // g: f9
+        // h: f10
+        // s3: f11-f12 (HFA with 2 floats)
+        // i: stack at SP+100
+        return a + s1.field1 + s1.field2 + b + c + d + s2.field1 + s2.field2 +
                e + f + g + h + s3.field1 + s3.field2 + i;
     }
 

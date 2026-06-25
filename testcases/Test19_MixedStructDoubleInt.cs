@@ -16,6 +16,10 @@ class Program
 {
     static double ppc64leHelloWorldCallee(MixedDoubleStruct s, int b)
     {
+        // PPC64LE ELFv2 ABI: MixedDoubleStruct is NOT HFA (has mixed double and int fields)
+        // Non-HFA structs are passed in integer registers
+        // s: r3-r5 (24 bytes struct, needs 3 GPR slots)
+        // b: r6
         return s.field1 + s.field2 + s.field3 + s.field4 + b;
     }
 
