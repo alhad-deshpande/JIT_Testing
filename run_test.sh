@@ -79,6 +79,7 @@ TOTAL=0
 PASS=0
 FAIL=0
 TEST_COUNTER=0
+TESTCASE_COUNT=$(find "$TESTCASE_DIR" -maxdepth 1 -type f -name '*.cs' | wc -l)
 
 # ======================================
 # Normalize Output
@@ -104,14 +105,14 @@ normalize_output() {
 # Run all testcases
 # ======================================
 
-for testcase in $(ls $TESTCASE_DIR/*.cs | sort -V)
+for testcase in $(ls "$TESTCASE_DIR"/*.cs | sort -V)
 do
-    TEST_COUNTER=$((TOTAL+1))
     FILE_NAME=$(basename "$testcase")
+    TEST_COUNTER=$((TEST_COUNTER + 1))
 
-    echo "========================================"
-    echo "Running Testcase $TEST_COUNTER : $FILE_NAME"
-    echo "========================================"
+    echo "==========================================================="
+    echo "Running Testcase $TEST_COUNTER/$TESTCASE_COUNT : $FILE_NAME"
+    echo "==========================================================="
 
     # ======================================
     # Copy testcase to Program.cs
