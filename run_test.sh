@@ -78,6 +78,7 @@ CORERUN_PATH="$RUNTIME_DIR/artifacts/tests/coreclr/linux.ppc64le.Debug/Tests/Cor
 TOTAL=0
 PASS=0
 FAIL=0
+TEST_COUNTER=0
 
 # ======================================
 # Normalize Output
@@ -105,11 +106,11 @@ normalize_output() {
 
 for testcase in $(ls $TESTCASE_DIR/*.cs | sort -V)
 do
-
+    TEST_COUNTER=$((TOTAL+1))
     FILE_NAME=$(basename "$testcase")
 
     echo "========================================"
-    echo "Running Testcase: $FILE_NAME"
+    echo "Running Testcase $TEST_COUNTER : $FILE_NAME"
     echo "========================================"
 
     # ======================================
