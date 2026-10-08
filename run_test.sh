@@ -88,7 +88,7 @@ TESTCASE_COUNT=$(find "$TESTCASE_DIR" -maxdepth 1 -type f -name '*.cs' | wc -l)
 normalize_output() {
     printf "%s" "$1" \
     | tr -d '\r' \
-    | sed 's/\x1B\[[0-9;:]*[a-zA-Z]//g' \
+    | sed 's/\x1B\[[?0-9;:]*[a-zA-Z]//g' \
     | sed 's/\x1B][0-9;]*//g' \
     | tr -cd '\11\12\15\40-\176' \
     | sed 's/^\\//' \
