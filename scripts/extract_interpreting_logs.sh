@@ -228,7 +228,7 @@ done
     cat "$TMP_SUMMARY_ROWS"
     echo "=============================================================================================================="
     echo ""
-    echo "FALLBACK INTERPRETING FUNCTIONS BREAKDOWN (Testcases with Fallback Interpreting > 0):"
+    echo "FALLBACK INTERPRETING FUNCTIONS BREAKDOWN:"
     if [[ -s "$TMP_INTERP_DETAILS" ]]; then
         cat "$TMP_INTERP_DETAILS"
     else
